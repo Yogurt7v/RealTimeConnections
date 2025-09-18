@@ -19,7 +19,6 @@ app.get('/get-messages', (req, res) => {
 
 app.post('/new-message', (req, res) => {
   const message = req.body;
-  console.log(message);
   emitter.emit('new-message', message);
   res.status(200);
 });
