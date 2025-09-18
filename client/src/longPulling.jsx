@@ -1,9 +1,24 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const LongPulling = () => {
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');
+
+  useEffect(() => {
+    subscribe();
+  }, []);
+
+  const subscribe = async () => {
+    try {
+      const { data } = await axios.get('http://localhost:4000/get-messages');
+      setMessages((prev) => [data, ...prev]);
+      await subscribe();
+    } catch (error) {
+      setTimeout(() => subscribe(), 5000);
+      console.log(error);
+    }
+  };
 
   const sendMessage = async () => {
     await axios.post('http://localhost:4000/new-message', {
