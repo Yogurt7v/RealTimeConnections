@@ -1,10 +1,14 @@
 import './App.css';
-import LongPulling from './longPulling';
+import EventSource from './eventSource';
+// import LongPulling from './longPulling';
 
 function App() {
   return (
     <div className="App">
-      <LongPulling />
+      {/* <p>LongPulling</p>
+      <LongPulling /> */}
+      <p>EventSource</p>
+      <EventSource />
     </div>
   );
 }
