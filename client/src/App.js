@@ -1,5 +1,6 @@
 import './App.css';
-import EventSource from './eventSource';
+import WebSock from './webSocket';
+// import EventSource from './eventSource';
 // import LongPulling from './longPulling';
 
 function App() {
@@ -7,8 +8,10 @@ function App() {
     <div className="App">
       {/* <p>LongPulling</p>
       <LongPulling /> */}
-      <p>EventSource</p>
-      <EventSource />
+      {/* <p>EventSource</p>
+      <EventSource /> */}
+      <p>Web Socket</p>
+      <WebSock />
     </div>
   );
 }
