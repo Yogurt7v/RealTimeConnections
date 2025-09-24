@@ -1,4 +1,5 @@
 import './App.css';
+import Counter from './test';
 import WebSock from './webSocket';
 // import EventSource from './eventSource';
 // import LongPulling from './longPulling';
@@ -10,8 +11,9 @@ function App() {
       <LongPulling /> */}
       {/* <p>EventSource</p>
       <EventSource /> */}
-      <p>Web Socket</p>
-      <WebSock />
+      {/* <p>Web Socket</p>
+      <WebSock /> */}
+      <Counter />
     </div>
   );
 }
