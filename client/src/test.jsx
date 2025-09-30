@@ -1,44 +1,28 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-export default function ToDoList() {
-  const [todoList, setTodoList] = useState([]);
-  const [newTodo, setNewTodo] = useState('');
+export default function Countdown({ initialSeconds = 64 }) {
+  const [timer, setTimer] = useState(+initialSeconds);
+  const timerFunction = useRef(null);
 
-  const addTodo = () => {
-    if (newTodo.trim()) {
-      setTodoList((prev) => [...prev, newTodo]);
-      setNewTodo('');
-    }
+  const formatTime = (seconds) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
 
-  return (
-    <>
-      <div>
-        <input
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-              addTodo();
-            }
-          }}
-          placeholder="Добавь новое дело"
-          onChange={(e) => {
-            setNewTodo(e.target.value);
-          }}
-          value={newTodo}
-        />
-        <button onClick={() => addTodo()}>Добавить</button>
-      </div>
-      <div>
-        {todoList.length === 0 ? (
-          <div>"Список дел пуст"</div>
-        ) : (
-          <div>
-            {todoList.map((item, index) => (
-              <div key={index}>{item}</div>
-            ))}
-          </div>
-        )}
-      </div>
-    </>
-  );
+  useEffect(() => {
+    timerFunction.current = setInterval(() => {
+      setTimer((prev) => {
+        if (prev <= 1) {
+          clearInterval(timerFunction.current);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timerFunction.current);
+  }, []);
+
+  return <div>{formatTime(timer)}</div>;
 }

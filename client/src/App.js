@@ -1,5 +1,5 @@
 import './App.css';
-import Counter from './test.jsx';
+import Countdown from './test.jsx';
 import WebSock from './webSocket';
 // import EventSource from './eventSource';
 // import LongPulling from './longPulling';
@@ -13,7 +13,7 @@ function App() {
       <EventSource /> */}
       <p>Web Socket</p>
       <WebSock />
-      <Counter />
+      <Countdown initialSeconds={12} />
     </div>
   );
 }
